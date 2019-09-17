@@ -1,9 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>JDBC Connection example</title>
     </head>
   <body>
@@ -31,7 +29,13 @@
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM emp");
             while (rs.next()) {
-                out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getInt(3) + "<br/><br/>");
+              %>
+              <tr>
+                <td><%=rs.getString("id") %></td>
+                <td><%=rs.getString("name") %></td>
+                <td><%=rs.getString("age") %></td>
+              </tr>
+              <%
             }
             rs.close();
             stmt.close();
